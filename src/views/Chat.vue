@@ -9,10 +9,22 @@ import ChatBubble from '../components/ChatBubble.vue'
 
 const route = useRoute()
 
+// 生成会话id。不能直接用 crypto.randomUUID：它只在"安全上下文"（HTTPS 或 localhost）存在，
+// 部署后经 http://局域网IP 访问时是 undefined，setup 里一调用就抛 TypeError，整个对话页白屏。
+// crypto.getRandomValues 无此限制，用它兜底拼一个等价的 v4 UUID。
+const genSessionId = () => {
+  if (crypto.randomUUID) return crypto.randomUUID()
+  const b = crypto.getRandomValues(new Uint8Array(16))
+  b[6] = (b[6] & 0x0f) | 0x40   // version 4
+  b[8] = (b[8] & 0x3f) | 0x80   // variant 10
+  const hex = [...b].map((x) => x.toString(16).padStart(2, '0')).join('')
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`
+}
+
 //会话id:本标签页内固定,刷新延续,关标签页自动开新会话
 let sessionId = sessionStorage.getItem('chatSessionId')
 if (!sessionId) {
-  sessionId = crypto.randomUUID()
+  sessionId = genSessionId()
   sessionStorage.setItem('chatSessionId', sessionId)
 }
 
@@ -168,7 +180,7 @@ const newConversation = () => {
     showToast('AI正在回复中，稍后再新建')
     return
   }
-  sessionId = crypto.randomUUID()
+  sessionId = genSessionId()
   sessionStorage.setItem('chatSessionId', sessionId)
   // 标记"用户主动新建"：下次挂载跳过自动恢复，否则切首页再回来会被"最近会话"抢占
   sessionStorage.setItem('chatFresh', '1')
