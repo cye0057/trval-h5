@@ -78,7 +78,7 @@ const doLogout = async () => {
       <!-- 已登录：用户卡片（历史对话已移至对话页侧边栏，这里不再重复） -->
       <template v-if="isLogin()">
         <div class="user-card">
-          <van-avatar :size="52" background="#1989fa">{{ (user.nickname || 'U')[0] }}</van-avatar>
+          <van-avatar :size="52" background="#1A2B3C">{{ (user.nickname || 'U')[0] }}</van-avatar>
           <div class="user-meta">
             <div class="user-name">{{ user.nickname }}</div>
             <div class="user-code">ID: {{ user.userCode }}</div>
@@ -122,7 +122,7 @@ const doLogout = async () => {
 <style scoped>
 .demo-page {
   min-height: 100vh;
-  background: #f7f8fa;
+  background: transparent;
   padding-bottom: 60px;
 }
 .block {
@@ -135,9 +135,11 @@ const doLogout = async () => {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: #fff;
-  border-radius: 12px;
-  padding: 16px;
+  background: var(--van-white);
+  border: none;
+  border-radius: var(--app-card-radius);
+  padding: 18px;
+  box-shadow: var(--app-shadow-soft);
 }
 .user-meta {
   flex: 1;
@@ -145,10 +147,11 @@ const doLogout = async () => {
 .user-name {
   font-size: 16px;
   font-weight: 600;
+  color: var(--van-text-color);
 }
 .user-code {
   font-size: 12px;
-  color: #969799;
+  color: var(--van-text-color-3);
   margin-top: 4px;
 }
 </style>

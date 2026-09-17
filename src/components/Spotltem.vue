@@ -35,4 +35,28 @@ defineProps({
 .spot-item {
   padding: 8px 0;
 }
+.spot-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--van-text-color);
+  margin-bottom: 6px;
+}
+.spot-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.detail-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--van-text-color-2);
+}
+.spot-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--van-text-color-2);
+}
 </style>

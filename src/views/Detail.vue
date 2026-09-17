@@ -135,21 +135,22 @@ onMounted(fetchData)
 <style scoped>
  .page-container{
    min-height: 100vh;
-   background-color: #f5f5f5;
+   background-color: transparent;
    padding-bottom: 70px;
  }
  .card{
-   background-color: #fff;
-   border-radius: 8px;
-   padding: 16px;
-   margin-bottom: 12px;
-   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+   background-color: var(--van-white);
+   border: none;
+   border-radius: var(--app-card-radius);
+   padding: 18px;
+   margin-bottom: 14px;
+   box-shadow: var(--app-shadow-soft);
  }
 
  .section-title{
     font-size: 16px;
     font-weight: 600;
-    color: #333;
+    color: var(--van-text-color);
     margin-bottom: 12px;
  }
 
@@ -158,13 +159,13 @@ onMounted(fetchData)
  }
 
  .overflow-card{
-    padding: 0;
+    padding: 16px;
  }
 
  .trip-budget {
     font-size: 16px;
     font-weight: 600;
-    color: #ee0a24;
+    color: var(--van-danger-color);
  }
 
  .trip-collapse{
@@ -184,27 +185,30 @@ onMounted(fetchData)
  }
 
  .section-label{
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: var(--app-chip-radius);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: var(--app-label-spacing);
     display: inline-block;
     margin-right: 8px;
  }
 
+ /* 淡绿 chip + 深蓝灰字：参考图强调色 #D9EFE0 / #1A2B3C；三时段统一底色，仅字色微调 */
  .section-label.morning{
-    background: #fff;
-    color: #e6ad33;
+    background: var(--app-accent);
+    color: #1A2B3C;
  }
 
  .section-label.afternoon{
-    background: #fff;
-    color: #4179da;
+    background: var(--app-accent);
+    color: var(--app-primary);
  }
 
  .section-label.evening{
-    background: #e1d9da;
-    color: #52c41a;
+    background: var(--app-accent);
+    color: var(--app-primary);
  }
 
  .budget-card,
@@ -219,13 +223,13 @@ onMounted(fetchData)
     padding: 0;
     margin: 0;
  }
- 
+
  .tips-list li,
  .warnings-list li{
-    padding-bottom: 8px 0;
-    color: #666;
+    padding: 8px 0;
+    color: var(--van-text-color-2);
     font-size: 14px;
-    border-bottom: 1px solid #f7f7f7;
+    border-bottom: 1px solid var(--van-border-color);
  }
 
  .tips-list li:last-child,
@@ -239,9 +243,9 @@ onMounted(fetchData)
     left: 0;
     right: 0;
     padding: 12px 16px;
-    background: #fff;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
-    max-width: 750px;
+    background: var(--van-white);
+    box-shadow: var(--app-shadow-top);
+    max-width: var(--app-max-width);
     margin: 0 auto;
  }
 
@@ -256,7 +260,7 @@ onMounted(fetchData)
  .loading-text{
     margin-top: 16px;
     font-size: 14px;
-    color: #999;
+    color: var(--van-text-color-3);
  }
 
  .error-card{

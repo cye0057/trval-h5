@@ -56,24 +56,27 @@ const formatTime = (iso) => {
 
 .bubble {
   padding: 10px 14px;
-  border-radius: 12px;
+  border-radius: var(--app-bubble-radius);
   word-break: break-word;
   white-space: pre-wrap;
   font-size: 15px;
   line-height: 1.5;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--app-shadow-soft-sm);
+  transition: transform var(--app-duration) ease, box-shadow var(--app-duration) ease;
 }
 
 .message-item:not(.self) .bubble {
-  background: #fff;
-  color: #333;
-  border-top-left-radius: 4px;
+  background: var(--van-white);
+  color: var(--van-text-color);
+  border: none;
+  border-top-left-radius: 6px;
 }
 
 .message-item.self .bubble {
-  background: linear-gradient(135deg, #007AFF, #5AC8FA);
+  background: linear-gradient(135deg, var(--app-primary-dark), var(--app-primary));
   color: #fff;
-  border-top-right-radius: 4px;
+  border: none;
+  border-top-right-radius: 6px;
 }
 
 .content {
@@ -83,6 +86,6 @@ const formatTime = (iso) => {
 .time {
   margin-top: 4px;
   font-size: 11px;
-  color: #999;
+  color: var(--van-text-color-3);
 }
 </style>

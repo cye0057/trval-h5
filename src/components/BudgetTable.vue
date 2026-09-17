@@ -64,13 +64,13 @@ const budgetItems = computed(() => {
   padding: 12px 16px;
   font-size: 16px;
   font-weight: 600;
-  color: #333;
-  border-top: 1px solid #eee;
+  color: var(--van-text-color);
+  border-top: 1px solid var(--van-border-color);
   margin-top: 4px;
 }
 
 .total-amount {
-  color: #ee0a24;
+  color: var(--van-danger-color);
   font-size: 18px;
 }
 </style>

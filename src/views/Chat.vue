@@ -312,11 +312,15 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  height: 100dvh;
   padding-bottom: 50px;
+  background: transparent;   /* 透出 body 淡绿渐变 */
 }
 
+/* flex:1 + min-height:0：替代写死的 630px，地址栏收起/桌面高度变化都不再撑破或留白 */
 .chat-container {
-  height: 630px;
+  flex: 1;
+  min-height: 0;
   overflow-y: auto;
   padding: 16px;
   padding-bottom: 60px;
@@ -338,8 +342,10 @@ onMounted(async () => {
 
  .quick-title {
   margin-bottom: 16px;
-  font-size: 14px;
-  color: #4d4a4ac5;
+  font-size: 12px;
+  color: var(--van-text-color-3);
+  text-transform: uppercase;
+  letter-spacing: var(--app-label-spacing);
 }
 
 .quick-tag {
@@ -358,7 +364,7 @@ onMounted(async () => {
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  color: #999;
+  color: var(--van-text-color-3);
   font-size: 14px;
 }
  .chat-input-area {
@@ -366,30 +372,31 @@ onMounted(async () => {
   bottom: 50px;
   left: 0;
   right: 0;
-  background: #fff;
+  background: var(--van-white);
   padding: 8px 16px;
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
-  max-width: 750px;
+  box-shadow: var(--app-shadow-top);
+  max-width: var(--app-max-width);
   margin: 0 auto;
 }
 
 .chat-input-area :deep(.van-field) {
-  background: #f7f8fa;
-  border-radius: 20px;
+  background: var(--van-white);
+  border-radius: 999px;
   padding: 8px 16px;
+  box-shadow: var(--app-shadow-soft-sm);
 }
 
 .sidebar {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: #fff;
+  background: var(--van-white);
 }
 .hist-btn {
   display: flex;
   align-items: center;
   gap: 3px;
-  color: #1989fa;
+  color: var(--app-primary);
   font-size: 14px;
 }
 .sidebar-header {
@@ -397,11 +404,12 @@ onMounted(async () => {
   align-items: center;
   justify-content: space-between;
   padding: 16px 16px 12px;
-  border-bottom: 1px solid #f2f3f5;
+  border-bottom: 1px solid var(--van-border-color);
 }
 .sidebar-title {
   font-size: 16px;
   font-weight: 600;
+  color: var(--van-text-color);
 }
 .sidebar-loading {
   margin: 24px auto;
@@ -412,21 +420,22 @@ onMounted(async () => {
 }
 .sidebar-item {
   padding: 12px 16px;
-  border-bottom: 1px solid #f7f8fa;
+  border-bottom: 1px solid var(--van-border-color);
+  transition: background var(--app-duration) ease;
 }
 .sidebar-item:active {
-  background: #f2f3f5;
+  background: var(--van-active-color);
 }
 .sidebar-item-title {
   font-size: 14px;
-  color: #323233;
+  color: var(--van-text-color);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .sidebar-item-time {
   font-size: 12px;
-  color: #969799;
+  color: var(--van-text-color-3);
   margin-top: 4px;
 }
 </style>

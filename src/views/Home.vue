@@ -112,20 +112,22 @@ const selectCity = (city) => {
         label="目的地"
         placeholder="请选择城市"
         readonly
-        is-link 
-        style="background-color: #f7f7f7; border-radius: 8px; margin-bottom: 8px;"
+        is-link
+        class="plan-field"
         />
         <van-field
         v-model="formData.budget"
         label="预算"
-        placeholder="请输入预算"
-        style="background-color: #f7f7f7; border-radius: 8px; margin-bottom: 8px;"
+        placeholder="请输入预算（元）"
+        type="number"
+        class="plan-field"
         />
         <van-field
         v-model="formData.days"
         label="天数"
         placeholder="请输入天数"
-        style="background-color: #f7f7f7; border-radius: 8px; margin-bottom: 8px;"
+        type="number"
+        class="plan-field"
         />
         <van-button type="primary" size="large" round @click="handleSubmit">规划行程</van-button>
       </div>
@@ -162,24 +164,33 @@ const selectCity = (city) => {
 <style scoped>
 .page-container {
   min-height: 100vh;
-  background: #f7f8fa;
+  background: transparent;   /* 让 body 淡绿渐变透出 */
   padding-bottom: 120px;
 }
 .page-content {
   padding: 16px;
 }
+/* Soft UI 卡片：纯白 + 大圆角 + 大模糊柔影，无边框（参考图） */
 .card {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background-color: var(--van-white);
+  border: none;
+  border-radius: var(--app-card-radius);
+  padding: 18px;
+  margin-bottom: 14px;
+  box-shadow: var(--app-shadow-soft);
 }
 .section-title {
   font-size: 18px;
-  font-weight: 600;
-  color: #333;
+  font-weight: 700;
+  color: var(--van-text-color);
+  letter-spacing: var(--app-label-spacing);
   margin-bottom: 12px;
+}
+.plan-field {
+  background-color: var(--van-white);
+  border-radius: var(--app-field-radius);
+  margin-bottom: 10px;
+  box-shadow: var(--app-shadow-soft-sm);
 }
 .city-grid {
   display: grid;
@@ -188,15 +199,20 @@ const selectCity = (city) => {
 }
 .city-item {
   padding: 8px 12px;
-  border-radius: 16px;
-  background-color: #f7f7f7;
+  border-radius: var(--app-chip-radius);
   font-size: 14px;
-  color: #666;
-  background: #f7f8fa;
-  transition: all 0.3s;
+  color: var(--van-text-color-2);
+  background: var(--van-white);
+  text-align: center;
+  transition: transform var(--app-duration) ease, box-shadow var(--app-duration) ease, background var(--app-duration) ease;
+  box-shadow: var(--app-shadow-soft-sm);
+}
+.city-item:active {
+  transform: translateY(1px);
 }
 .city-item.active {
-  background-color: #007AFF;
+  background: var(--app-primary);
   color: #fff;
+  box-shadow: var(--app-shadow-soft-sm);
 }
 </style>

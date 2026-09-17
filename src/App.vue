@@ -17,3 +17,15 @@ const active = ref(0)
 </van-tabbar>
 
 </template>
+
+<style>
+/* 桌面端内容最大宽度居中，两侧留白；移动端满宽。
+   透明底让 body 的淡绿渐变透出；不加路由 <transition>（out-in 快速切 tab 会白屏）。 */
+#app {
+  max-width: var(--app-max-width, 750px);
+  margin: 0 auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: transparent;
+}
+</style>

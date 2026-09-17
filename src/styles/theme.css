@@ -1,0 +1,80 @@
+/* ============================================================
+   Soft UI Evolution —— 柔和现代风（按用户参考图定稿）
+   ------------------------------------------------------------
+   - 浅灰白→淡绿渐变底，纯白大圆角卡片，低透明度灰绿色大模糊柔影
+   - 深蓝灰 #1A2B3C 文字/强调，淡绿 #D9EFE0 点缀
+   - 标签：小号、字间距，清晰层级
+   - 锁定 light only；只用经 grep 校验存在的 --van-* 变量，
+     不存在的（--van-primary-color-light/dark、--van-card-radius）用 --app-* 自有令牌
+   - 必须 import 在 'vant/lib/index.css' 之后
+   ============================================================ */
+
+:root {
+  /* —— 主色：深蓝灰，按钮/链接/激活态 —— */
+  --van-primary-color: #1A2B3C;
+  --van-success-color: #2f9e6e;
+  --van-danger-color:  #d64545;
+  --van-warning-color: #c2860a;
+
+  /* —— 文字层级：深蓝灰系，接近黑但偏冷 —— */
+  --van-text-color:   #1A2B3C;
+  --van-text-color-2: #5b6b7a;
+  --van-text-color-3: #8b98a5;
+
+  /* —— 背景/边框/按压：Vant 组件白底，页面底由 body 渐变提供 —— */
+  --van-background:   #eaf4ec;
+  --van-background-2: #ffffff;
+  --van-background-3: #ffffff;
+  --van-border-color: #e6ece8;
+  --van-active-color: #dde7e1;
+
+  /* —— 圆角：在 Vant 默认基础上放大 —— */
+  --van-radius-md: 10px;
+  --van-radius-lg: 16px;
+
+  /* —— Soft UI 自有令牌 —— */
+  --app-primary:        #1A2B3C;
+  --app-primary-dark:   #0f1d2a;
+  --app-accent:         #D9EFE0;   /* 淡绿点缀（chip/标签底） */
+  --app-accent-soft:    #eaf6ef;
+  --app-card-radius:    20px;
+  --app-field-radius:   14px;
+  --app-bubble-radius:  20px;
+  --app-chip-radius:    999px;
+  /* 大模糊、低透明度、灰绿色调柔影；无硬黑边，比纯扁平有层次、比新拟物清晰 */
+  --app-shadow-soft:    0 2px 6px rgba(26, 43, 60, 0.05), 0 12px 32px rgba(26, 43, 60, 0.07);
+  --app-shadow-soft-sm: 0 1px 3px rgba(26, 43, 60, 0.05), 0 6px 16px rgba(26, 43, 60, 0.06);
+  --app-shadow-top:     0 -2px 6px rgba(26, 43, 60, 0.04), 0 -8px 24px rgba(26, 43, 60, 0.05);
+  --app-shadow-hover:   0 4px 10px rgba(26, 43, 60, 0.06), 0 18px 40px rgba(26, 43, 60, 0.09);
+  --app-duration:       240ms;
+  --app-max-width:      750px;
+  --app-label-spacing:  0.08em;
+}
+
+/* 锁定浅色：系统深色主题下也不切换，避免半开暗色造成白底浅字 */
+html {
+  color-scheme: light only;
+}
+
+/* 全页柔光渐变：浅灰白 → 淡绿，干净通透；fixed 避免长页面渐变断裂 */
+html, body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f7faf8 0%, #eaf4ec 55%, #e3f0e8 100%);
+  background-attachment: fixed;
+}
+
+/* 可访问焦点：柔阴影下焦点不明显，键盘聚焦补深蓝灰描边 */
+:focus-visible {
+  outline: 2px solid var(--app-primary);
+  outline-offset: 2px;
+}
+
+/* 尊重"减少动态" */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
